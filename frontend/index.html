@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Organize seus estudos e acompanhe o progresso das tarefas.">
+  <meta name="theme-color" content="#1d4ed8">
+  <title>Meu Plano de Estudos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Ir para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <p class="sobretitulo">Desenvolvimento Web com IA</p>
+      <h1>Meu Plano de Estudos</h1>
+      <p class="subtitulo">Organize o que você precisa aprender e acompanhe o andamento dos estudos.</p>
+      <p class="aviso-compartilhado">Versão didática, sem login. As tarefas são compartilhadas entre quem acessa esta instalação.</p>
+    </div>
+  </header>
+
+  <main id="conteudo" class="container">
+    <section class="bloco" aria-labelledby="titulo-progresso">
+      <h2 id="titulo-progresso">Seu progresso</h2>
+
+      <div class="indicadores">
+        <article class="indicador indicador-total">
+          <p class="indicador-rotulo">Total de tarefas</p>
+          <p class="indicador-valor" id="total-tarefas">0</p>
+        </article>
+        <article class="indicador indicador-a-estudar">
+          <p class="indicador-rotulo">A estudar</p>
+          <p class="indicador-valor" id="tarefas-a-estudar">0</p>
+        </article>
+        <article class="indicador indicador-estudando">
+          <p class="indicador-rotulo">Estudando</p>
+          <p class="indicador-valor" id="tarefas-estudando">0</p>
+        </article>
+        <article class="indicador indicador-concluidas">
+          <p class="indicador-rotulo">Concluídas</p>
+          <p class="indicador-valor" id="tarefas-concluidas">0</p>
+        </article>
+      </div>
+
+      <div class="progresso">
+        <div class="progresso-legenda">
+          <span id="progresso-detalhe">0 de 0 tarefas concluídas</span>
+          <strong id="progresso-texto">0%</strong>
+        </div>
+        <div
+          class="barra"
+          id="barra-progresso"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-labelledby="progresso-detalhe"
+        >
+          <div class="barra-preenchimento" id="barra-preenchimento"></div>
+        </div>
+        <p class="formula">Porcentagem = (tarefas concluídas / total de tarefas) × 100. Sem tarefas, o resultado é 0%.</p>
+      </div>
+    </section>
+
+    <section class="cartao" aria-labelledby="titulo-formulario">
+      <h2 id="titulo-formulario">Nova tarefa</h2>
+      <p class="texto-ajuda" id="ajuda-formulario">O status inicial sugerido é “A estudar”.</p>
+
+      <form id="formulario-tarefa" novalidate>
+        <div class="campo">
+          <label for="titulo">Título</label>
+          <input id="titulo" name="titulo" type="text" maxlength="150" required placeholder="Ex.: Estudar seletores CSS">
+          <small>Obrigatório. Máximo de 150 caracteres.</small>
+        </div>
+
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" maxlength="1000" rows="4" placeholder="O que você pretende aprender nesta tarefa?"></textarea>
+          <small>Opcional. Máximo de 1000 caracteres.</small>
+        </div>
+
+        <div class="grade-duas">
+          <div class="campo">
+            <label for="materia">Matéria</label>
+            <input id="materia" name="materia" type="text" maxlength="100" required placeholder="Ex.: CSS">
+            <small>Obrigatório. Máximo de 100 caracteres.</small>
+          </div>
+
+          <div class="campo">
+            <label for="data-prevista">Data prevista</label>
+            <input id="data-prevista" name="data_prevista" type="date">
+            <small>Opcional.</small>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="A estudar" selected>A estudar</option>
+            <option value="Estudando">Estudando</option>
+            <option value="Concluído">Concluído</option>
+          </select>
+        </div>
+
+        <div class="acoes-formulario">
+          <button type="submit" class="botao botao-primario" id="botao-salvar">
+            <svg class="icone" id="icone-criar" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+            <svg class="icone" id="icone-salvar" viewBox="0 0 24 24" aria-hidden="true" hidden>
+              <path d="M5 13l4 4L19 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+            <span id="texto-botao-salvar">Cadastrar tarefa</span>
+          </button>
+          <button type="button" class="botao botao-secundario" id="botao-cancelar" hidden>Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="bloco" aria-labelledby="titulo-lista">
+      <div class="lista-cabecalho">
+        <h2 id="titulo-lista">Tarefas</h2>
+        <div class="filtros" role="group" aria-label="Filtrar tarefas">
+          <button type="button" class="filtro ativo" data-filtro="todas" aria-pressed="true">Todas</button>
+          <button type="button" class="filtro" data-filtro="A estudar" aria-pressed="false">A estudar</button>
+          <button type="button" class="filtro" data-filtro="Estudando" aria-pressed="false">Estudando</button>
+          <button type="button" class="filtro" data-filtro="Concluído" aria-pressed="false">Concluídas</button>
+        </div>
+      </div>
+
+      <div id="lista-tarefas" class="lista-tarefas" aria-live="polite">
+        <p class="vazio">Carregando tarefas...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container">
+      <p>Aplicação didática do curso Desenvolvimento Web com IA. Não cadastre informações pessoais: qualquer pessoa com este endereço pode ver e modificar as tarefas.</p>
+    </div>
+  </footer>
+
+  <div id="aviso" class="aviso" role="status" hidden></div>
+
+  <div id="modal-exclusao" class="modal" hidden>
+    <div class="modal-painel" role="dialog" aria-modal="true" aria-labelledby="modal-titulo">
+      <h3 id="modal-titulo">Excluir tarefa</h3>
+      <p id="modal-texto">Deseja realmente excluir esta tarefa?</p>
+      <div class="modal-acoes">
+        <button type="button" class="botao botao-secundario" id="cancelar-exclusao">Cancelar</button>
+        <button type="button" class="botao botao-perigo" id="confirmar-exclusao">
+          <svg class="icone" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h16M9 7V5h6v2M7 7l1 13h8l1-13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+          Excluir
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <p class="container aviso-js">Ative o JavaScript do navegador para usar o Meu Plano de Estudos.</p>
+  </noscript>
+
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

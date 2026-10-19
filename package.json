@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "node --check backend/server.js && node --check backend/database.js && node --check frontend/script.js && node --check frontend/config.js"
+  },
+  "dependencies": {
+    "@neon/config": "^1.9.2",
+    "@neon/env": "^1.6.3"
+  }
+}

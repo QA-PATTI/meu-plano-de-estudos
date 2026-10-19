@@ -1,0 +1,553 @@
+/* Meu Plano de Estudos
+   Visual claro, azul como cor principal, pensado para computador e celular. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --fundo: #f4f7fb;
+  --superficie: #ffffff;
+  --texto: #1e293b;
+  --texto-suave: #64748b;
+  --azul: #1d4ed8;
+  --azul-escuro: #1e3a8a;
+  --azul-claro: #dbeafe;
+  --verde: #166534;
+  --verde-fundo: #dcfce7;
+  --laranja: #9a3412;
+  --laranja-fundo: #ffedd5;
+  --laranja-borda: #f59e0b;
+  --cinza: #374151;
+  --cinza-fundo: #e5e7eb;
+  --cinza-borda: #9ca3af;
+  --borda: #e2e8f0;
+  --perigo: #b91c1c;
+  --sombra: 0 12px 30px rgba(15, 23, 42, 0.06);
+  --raio: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+.pular {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  background: #fff;
+  color: var(--azul);
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  z-index: 30;
+}
+
+.pular:focus {
+  top: 1rem;
+}
+
+.container {
+  width: min(1040px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.topo {
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 36%),
+    linear-gradient(155deg, var(--azul-escuro) 0%, var(--azul) 58%, #3b82f6 100%);
+  color: #fff;
+  padding: 2.4rem 0 2rem;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
+}
+
+.sobretitulo,
+.subtitulo,
+.aviso-compartilhado {
+  margin: 0;
+}
+
+.sobretitulo {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+h1 {
+  margin: 0.35rem 0 0.4rem;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.subtitulo {
+  max-width: 38rem;
+  font-size: 1.05rem;
+}
+
+.aviso-compartilhado {
+  margin-top: 1rem;
+  max-width: 40rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.92rem;
+}
+
+main {
+  padding: 1.5rem 0 2.5rem;
+}
+
+.bloco,
+.cartao {
+  margin-top: 1.25rem;
+}
+
+h2,
+h3 {
+  margin: 0 0 0.8rem;
+  line-height: 1.25;
+}
+
+.indicadores {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.indicador,
+.cartao,
+.progresso,
+.tarefa,
+.vazio {
+  background: var(--superficie);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+}
+
+.indicador {
+  padding: 1rem 1.05rem 0.9rem;
+  border-top: 4px solid var(--azul);
+}
+
+.indicador-a-estudar {
+  border-top-color: var(--cinza-borda);
+}
+
+.indicador-estudando {
+  border-top-color: var(--laranja-borda);
+}
+
+.indicador-concluidas {
+  border-top-color: #16a34a;
+}
+
+.indicador-rotulo {
+  margin: 0;
+  color: var(--texto-suave);
+  font-size: 0.92rem;
+}
+
+.indicador-valor {
+  margin: 0.2rem 0 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.indicador-a-estudar .indicador-valor {
+  color: var(--cinza);
+}
+
+.indicador-estudando .indicador-valor {
+  color: var(--laranja);
+}
+
+.indicador-concluidas .indicador-valor {
+  color: var(--verde);
+}
+
+.progresso {
+  margin-top: 0.75rem;
+  padding: 1rem 1.05rem;
+}
+
+.progresso-legenda {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+  margin-bottom: 0.55rem;
+}
+
+.progresso-legenda strong {
+  color: var(--azul);
+  font-size: 1.15rem;
+}
+
+.barra {
+  height: 14px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.barra-preenchimento {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #1d4ed8, #22c55e);
+  border-radius: inherit;
+  transition: width 0.25s ease;
+}
+
+.formula,
+.texto-ajuda,
+small,
+.rodape p {
+  color: var(--texto-suave);
+}
+
+.formula,
+.texto-ajuda {
+  margin: 0.65rem 0 0;
+  font-size: 0.92rem;
+}
+
+.cartao {
+  padding: 1.15rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.95rem;
+}
+
+.grade-duas {
+  display: grid;
+  gap: 0 1rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.72rem 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--texto);
+  font: inherit;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus-visible,
+.pular:focus {
+  outline: 3px solid #93c5fd;
+  outline-offset: 2px;
+}
+
+small {
+  font-size: 0.82rem;
+}
+
+.acoes-formulario,
+.modal-acoes,
+.tarefa-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.botao,
+.filtro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.botao-primario {
+  border: 0;
+  background: var(--azul);
+  color: #fff;
+}
+
+.botao-primario:hover {
+  background: #1e40af;
+}
+
+.botao-secundario {
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: var(--azul-escuro);
+}
+
+.botao-perigo {
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: var(--perigo);
+}
+
+.botao:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.icone {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+}
+
+.lista-cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.filtro {
+  border: 1px solid var(--borda);
+  background: #fff;
+  color: var(--texto);
+}
+
+.filtro.ativo {
+  border-color: var(--azul);
+  background: var(--azul);
+  color: #fff;
+}
+
+.lista-tarefas {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.vazio {
+  margin: 0;
+  padding: 1.4rem 1rem;
+  text-align: center;
+  color: var(--texto-suave);
+}
+
+.erro-lista {
+  border-color: #fecaca;
+  color: var(--perigo);
+}
+
+.tarefa {
+  padding: 1rem 1.05rem 1.05rem;
+  border-left: 6px solid var(--cinza-borda);
+}
+
+.tarefa.estudando {
+  border-left-color: var(--laranja-borda);
+}
+
+.tarefa.concluido {
+  border-left-color: #16a34a;
+}
+
+.tarefa-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  margin-bottom: 0.35rem;
+}
+
+.materia {
+  display: inline-block;
+  margin: 0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: var(--azul-claro);
+  color: var(--azul-escuro);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.tarefa h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+  overflow-wrap: anywhere;
+}
+
+.descricao,
+.data-prevista {
+  margin: 0 0 0.45rem;
+  overflow-wrap: anywhere;
+}
+
+.descricao {
+  white-space: pre-wrap;
+}
+
+.sem-dado {
+  color: var(--texto-suave);
+}
+
+.seletor-status {
+  width: auto;
+  min-width: 9.5rem;
+  min-height: 44px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.seletor-status.a-estudar {
+  background: var(--cinza-fundo);
+  color: var(--cinza);
+  border-color: #d1d5db;
+}
+
+.seletor-status.estudando {
+  background: var(--laranja-fundo);
+  color: var(--laranja);
+  border-color: #fdba74;
+}
+
+.seletor-status.concluido {
+  background: var(--verde-fundo);
+  color: var(--verde);
+  border-color: #86efac;
+}
+
+.tarefa-acoes {
+  margin-top: 0.7rem;
+}
+
+.rodape {
+  padding: 0 0 2rem;
+}
+
+.rodape p,
+.aviso-js {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.aviso {
+  position: fixed;
+  left: 50%;
+  bottom: 1.1rem;
+  transform: translateX(-50%);
+  width: min(440px, calc(100% - 2rem));
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: #0f172a;
+  color: #fff;
+  box-shadow: var(--sombra);
+  z-index: 40;
+}
+
+.aviso.sucesso {
+  background: #166534;
+}
+
+.aviso.erro {
+  background: #991b1b;
+}
+
+.aviso[hidden],
+.modal[hidden],
+.botao[hidden],
+.icone[hidden] {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.48);
+  z-index: 35;
+}
+
+.modal-painel {
+  width: min(440px, 100%);
+  padding: 1.15rem;
+  border-radius: var(--raio);
+  background: #fff;
+  box-shadow: var(--sombra);
+}
+
+.modal-painel p {
+  margin: 0 0 1rem;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 560px) {
+  .indicadores {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 700px) {
+  .grade-duas {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lista-cabecalho {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (min-width: 900px) {
+  .indicadores {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 559px) {
+  .filtro,
+  .acoes-formulario .botao,
+  .tarefa-acoes .botao,
+  .seletor-status {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barra-preenchimento {
+    transition: none;
+  }
+}
