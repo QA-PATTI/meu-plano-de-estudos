@@ -6,5 +6,5 @@
 //
 // Não coloque neste arquivo a senha do banco nem a DATABASE_URL.
 window.APP_CONFIG = {
-  API_URL: "http://localhost:3000"
+  API_URL: "https://meu-plano-de-estudos.onrender.com"
 };
