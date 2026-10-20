@@ -551,3 +551,34 @@ small {
     transition: none;
   }
 }
+
+/* Logo Bug Hunters no cabeçalho */
+.topo-conteudo {
+  position: relative;
+}
+
+@media (min-width: 700px) {
+  .topo-conteudo {
+    padding-right: 260px;
+    min-height: 170px;
+  }
+
+  .logo-bug-hunters {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 220px;
+    height: 180px;
+    object-fit: contain;
+  }
+}
+
+@media (max-width: 699px) {
+  .logo-bug-hunters {
+    display: block;
+    width: min(180px, 55%);
+    height: auto;
+    margin: 20px auto 0;
+  }
+}
